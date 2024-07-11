@@ -28,43 +28,44 @@ class _CustomCardState extends State<CustomCard> {
                 child: Row(
                   children: [
                     SizedBox(
-                        width: 200, // Decreased width for the ExpansionTile
-                        child: DropdownButton(
-                          style: Styles.textStyle16,
-                          underline: const Text(''),
-                          focusColor: Colors.transparent,
-                          hint: const Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                FontAwesomeIcons.binoculars,
-                                color: kIconColor,
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text('Simplified view'),
-                            ],
-                          ),
-                          isExpanded: true,
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'item1',
-                              child: Text('item1'),
+                      width: 200, // Decreased width for the ExpansionTile
+                      child: DropdownButton(
+                        style: Styles.textStyle16,
+                        underline: const Text(''),
+                        focusColor: Colors.transparent,
+                        hint: const Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
                             ),
-                            DropdownMenuItem(
-                              value: 'item2',
-                              child: Text('item2'),
+                            Icon(
+                              FontAwesomeIcons.binoculars,
+                              color: kIconColor,
                             ),
-                            DropdownMenuItem(
-                              value: 'item3',
-                              child: Text('item3'),
+                            SizedBox(
+                              width: 20,
                             ),
+                            Text('Simplified view'),
                           ],
-                          onChanged: (value) {},
-                        )),
+                        ),
+                        isExpanded: true,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'item1',
+                            child: Text('item1'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'item2',
+                            child: Text('item2'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'item3',
+                            child: Text('item3'),
+                          ),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ),
                     const VerticalDivider(
                       width: 10,
                       thickness: 1,

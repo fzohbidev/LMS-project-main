@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lms/core/utils/app_router.dart';
 import 'package:lms/core/utils/assets.dart';
 
 class CustomExpandedDrawer extends StatelessWidget {
@@ -206,13 +208,13 @@ class CustomCollapsedDrawer extends StatelessWidget {
                 ListTile(
                   title: const Icon(Icons.work_outline),
                   onTap: () {
-                    // Navigate to Sub Item 1
+                    GoRouter.of(context).push(AppRouter.kLicenseRenewalView);
                   },
                 ),
                 ListTile(
                   title: const Icon(FontAwesomeIcons.creditCard),
                   onTap: () {
-                    // Navigate to Sub Item 2
+                    GoRouter.of(context).push(AppRouter.kPaymentView);
                   },
                 ),
                 ListTile(
