@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         hintColor: Colors.black,
         colorScheme: const ColorScheme.light(),
-        
       ),
     );
   }
