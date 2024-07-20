@@ -10,7 +10,7 @@ class AuthRemoteDataSource {
 
   Future<UserModel> login(String username, String password) async {
     final response = await client.post(
-      Uri.parse('https://yourapi.com/api/auth/login'),
+      Uri.parse('http://localhost:8080/signin'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'username': username, 'password': password}),
     );
