@@ -4,10 +4,24 @@ import 'package:go_router/go_router.dart';
 
 class RegisterForm extends StatelessWidget {
   final VoidCallback onRegister;
+  final TextEditingController firstnameController;
+  final TextEditingController lastnameController;
+  final TextEditingController usernameController;
+  final TextEditingController emailController;
+  final TextEditingController phonenumberController;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
 
   const RegisterForm({
     Key? key,
     required this.onRegister,
+    required this.firstnameController,
+    required this.lastnameController,
+    required this.usernameController,
+    required this.emailController,
+    required this.phonenumberController,
+    required this.passwordController,
+    required this.confirmPasswordController,
   }) : super(key: key);
 
   @override
@@ -28,35 +42,48 @@ class RegisterForm extends StatelessWidget {
           child: Column(
             children: <Widget>[
               TextField(
-                decoration: InputDecoration(
+                controller: firstnameController,
+                decoration: const InputDecoration(
                   labelText: 'First Name',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                controller: lastnameController,
+                decoration: const InputDecoration(
                   labelText: 'Last Name',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                controller: usernameController,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                controller: phonenumberController,
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                controller: passwordController,
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
@@ -64,7 +91,8 @@ class RegisterForm extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                controller: confirmPasswordController,
+                decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   border: OutlineInputBorder(),
                 ),

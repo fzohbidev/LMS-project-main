@@ -9,12 +9,12 @@ class SignInForm extends StatelessWidget {
   final VoidCallback onSignIn;
 
   const SignInForm({
-    Key? key,
+    super.key,
     required this.usernameController,
     required this.passwordController,
     required this.errorMessage,
     required this.onSignIn,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

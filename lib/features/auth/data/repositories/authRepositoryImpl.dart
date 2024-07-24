@@ -12,13 +12,19 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<User> login(String username, String password) async {
     final userModel = await remoteDataSource.login(username, password);
     return User(
-        id: userModel.id, username: userModel.username, token: userModel.token);
+        username: userModel.username,
+        token: userModel.token,
+        roles: userModel.roles);
   }
 
   @override
-  Future<User> register(String username, String password) async {
-    final userModel = await remoteDataSource.register(username, password);
+  Future<User> register(String firstname, String lastname, String username,
+      String password, String phonenumber, String email) async {
+    final userModel = await remoteDataSource.register(
+        firstname, lastname, username, password, phonenumber, email);
     return User(
-        id: userModel.id, username: userModel.username, token: userModel.token);
+        username: userModel.username,
+        token: userModel.token,
+        roles: userModel.roles);
   }
 }
