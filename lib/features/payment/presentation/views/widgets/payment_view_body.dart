@@ -5,6 +5,7 @@ import 'package:lms/core/utils/styles.dart';
 import 'package:lms/core/widgets/custom_button.dart';
 import 'package:lms/core/widgets/custom_text_field.dart';
 import 'package:lms/features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:lms/core/utils/app_router.dart';
 
 class PaymentViewBody extends StatelessWidget {
   const PaymentViewBody({super.key});
@@ -98,6 +99,21 @@ class PaymentViewBody extends StatelessWidget {
                             child: CustomButton(
                               buttonName: 'Pay',
                               color: const Color(0xff0175d3),
+                              onTap: () {
+                                // Logic for handling the payment can go here
+
+                                // Show Snackbar notification
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('You have been billed.'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                                // Navigate back to the home page after a delay
+                                Future.delayed(Duration(seconds: 2), () {
+                                  GoRouter.of(context).go(AppRouter.kHomeView);
+                                });
+                              },
                             ),
                           ),
                         ],
