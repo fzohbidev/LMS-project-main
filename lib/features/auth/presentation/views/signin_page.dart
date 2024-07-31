@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lms/core/utils/app_router.dart';
 
 //DUMMY USERNAME AND PASS: user, user
 class SignIn extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SignInState extends State<SignIn> {
     // Check credentials
     if (username == 'user' && password == 'user') {
       // Navigate to HomeView on successful sign-in using GoRouter
-      context.go('/homeView');
+      context.go(AppRouter.kHomeView);
     } else {
       setState(() {
         _errorMessage = 'Invalid username or password';

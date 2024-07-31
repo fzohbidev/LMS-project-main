@@ -4,12 +4,20 @@ import 'package:lms/features/auth/presentation/views/signin_page.dart';
 import 'package:lms/features/home/presentation/views/home_view.dart';
 import 'package:lms/features/license_renewal/presentation/views/license_renewal.dart';
 import 'package:lms/features/payment/presentation/views/payment_view.dart';
+import 'package:lms/features/roles_and_premission/presentation/views/add_new_role_view.dart';
+import 'package:lms/features/roles_and_premission/presentation/views/manage_roles_view.dart';
+import 'package:lms/features/roles_and_premission/presentation/views/roles_and_permission_dashboard_view.dart';
+import 'package:lms/features/roles_and_premission/presentation/views/update_roles_view.dart';
 
 abstract class AppRouter {
   static const kSignIn = '/';
   static const kHomeView = '/homeView';
   static const kPaymentView = '/paymentView';
   static const kLicenseRenewalView = '/licenseRenewalView';
+  static const kRolesAndPermissionView = '/rolesAndPermissionView';
+  static const kManageRolesView = '/manageRolesView';
+  static const kUpdateRoleView = '/updateRoleView';
+  static const kAddNewRoleView = '/addNewRoleView';
 
   static final router = GoRouter(
     initialLocation: kSignIn,
@@ -18,6 +26,22 @@ abstract class AppRouter {
       GoRoute(
         path: kSignIn,
         builder: (context, state) => const SignIn(),
+      ),
+      GoRoute(
+        path: kRolesAndPermissionView,
+        builder: (context, state) => const RolesAndPermissionDashboardView(),
+      ),
+      GoRoute(
+        path: kAddNewRoleView,
+        builder: (context, state) => const AddNewRoleView(),
+      ),
+      GoRoute(
+        path: kUpdateRoleView,
+        builder: (context, state) => const UpdateRolesView(),
+      ),
+      GoRoute(
+        path: kManageRolesView,
+        builder: (context, state) => const ManageRolesView(),
       ),
       GoRoute(
         path: kHomeView,

@@ -123,9 +123,13 @@ class CustomExpandedDrawer extends StatelessWidget {
                   ],
                 ),
                 ListTile(
-                  title:  Row(
+                  title: Row(
                     children: [
-                      Image.asset(AssetsData.copilotIcon,height: 30,width: 30,),
+                      Image.asset(
+                        AssetsData.copilotIcon,
+                        height: 30,
+                        width: 30,
+                      ),
                       const SizedBox(
                         width: 5,
                       ),
@@ -134,6 +138,20 @@ class CustomExpandedDrawer extends StatelessWidget {
                   ),
                   onTap: () {
                     // Navigate to Copilot
+                  },
+                ),
+                ListTile(
+                  title:  Row(
+                    children: [
+                      Image.asset(AssetsData.rolesIcon,height: 30,width: 30,),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text('Roles and permissions'),
+                    ],
+                  ),
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kRolesAndPermissionView);
                   },
                 ),
                 ListTile(
@@ -218,9 +236,19 @@ class CustomCollapsedDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  title: Image.asset(AssetsData.copilotIcon,height: 30,width: 30,),
+                  title: Image.asset(
+                    AssetsData.copilotIcon,
+                    height: 30,
+                    width: 30,
+                  ),
                   onTap: () {
                     // Navigate to Market Place
+                  },
+                ),
+                ListTile(
+                  title: Image.asset(AssetsData.rolesIcon),
+                  onTap: () {
+                    // Navigate to Copilot
                   },
                 ),
                 ListTile(
