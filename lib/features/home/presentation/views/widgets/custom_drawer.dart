@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lms/core/utils/app_router.dart';
 import 'package:lms/core/utils/assets.dart';
+import 'package:lms/features/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 
 class CustomExpandedDrawer extends StatelessWidget {
   final VoidCallback closeDrawer;
@@ -140,6 +141,7 @@ class CustomExpandedDrawer extends StatelessWidget {
                     // Navigate to Copilot
                   },
                 ),
+                userRole == 'ROLE_ADMIN' ?
                 ListTile(
                   title:  Row(
                     children: [
@@ -153,7 +155,7 @@ class CustomExpandedDrawer extends StatelessWidget {
                   onTap: () {
                     GoRouter.of(context).push(AppRouter.kRolesAndPermissionView);
                   },
-                ),
+                ):Container(),
                 ListTile(
                   title: const Row(
                     children: [
@@ -245,12 +247,13 @@ class CustomCollapsedDrawer extends StatelessWidget {
                     // Navigate to Market Place
                   },
                 ),
+                userRole == 'ROLE_ADMIN' ?
                 ListTile(
                   title: Image.asset(AssetsData.rolesIcon),
                   onTap: () {
                     // Navigate to Copilot
                   },
-                ),
+                ):Container(),
                 ListTile(
                   title: const Icon(FontAwesomeIcons.wrench),
                   onTap: () {

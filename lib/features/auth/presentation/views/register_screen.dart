@@ -1,24 +1,33 @@
-// lib/features/auth/presentation/views/register_screen.dart
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:lms/features/auth/widgets/register_form.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/core/utils/api.dart';
+import 'package:lms/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:lms/features/auth/data/repositories/auth_repositroy_impl.dart';
+import 'package:lms/features/auth/domain/use_case/register_use_case.dart';
+import 'package:lms/features/auth/presentation/manager/registration_cubit/registration_cubit.dart';
+import 'package:lms/features/auth/presentation/views/widgets/register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void _handleRegister() {
-      // Navigate to HomeView on successful registration
-      context.go('/homeView');
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sign Up"),
-      ),
-      body: RegisterForm(
-        onRegister: _handleRegister,
+      appBar: AppBar(title: const Text("Sign Up")),
+      body: BlocProvider(
+        create: (context) => RegistrationCubit(
+          RegisterUseCase(
+            authRepository: AuthRepositoryImpl(
+              authRemoteDataSource: AuthRemoteDataSourceImpl(
+                api: Api(
+                  Dio(),
+                ),
+              ),
+            ),
+          ),
+        ),
+        child: RegisterForm(),
       ),
     );
   }

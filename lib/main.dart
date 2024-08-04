@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lms/core/simple_bloc_observer.dart';
 import 'package:lms/core/utils/app_router.dart';
 
 void main() {
+  Bloc.observer=SimpleBlocObserver();
   runApp(const MyApp());
 }
 

@@ -11,7 +11,7 @@ import 'package:lms/features/roles_and_premission/presentation/views/roles_and_p
 import 'package:lms/features/roles_and_premission/presentation/views/update_roles_view.dart';
 
 abstract class AppRouter {
-  static const kSignIn = '/';
+  static const kSignIn = '/singIn';
   static const kHomeView = '/homeView';
   static const kPaymentView = '/paymentView';
   static const kLicenseRenewalView = '/licenseRenewalView';
@@ -19,10 +19,10 @@ abstract class AppRouter {
   static const kManageRolesView = '/manageRolesView';
   static const kUpdateRoleView = '/updateRoleView';
   static const kAddNewRoleView = '/addNewRoleView';
-  static const kRegister = '/register';
+  static const kRegister = '/';
 
   static final router = GoRouter(
-    initialLocation: kSignIn,
+    initialLocation: kRegister,
     errorPageBuilder: (context, state) => MaterialPage(child: Container()),
     routes: [
       GoRoute(
