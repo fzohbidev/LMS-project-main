@@ -1,14 +1,18 @@
-// lib/features/auth/data/data_sources/auth_remote_data_source.dart
-// ignore_for_file: avoid_print
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
 
 class AuthRemoteDataSource {
   final http.Client client;
 
   AuthRemoteDataSource(this.client);
+
+  Future<void> _saveJwtToken(String token) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('jwtToken', token);
+    print('JWT token saved: $token');
+  }
 
   Future<UserModel> login(String username, String password) async {
     final response = await client.post(
@@ -18,31 +22,31 @@ class AuthRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      // ignore: avoid_print
       print("IN");
-      // ignore: avoid_print
       print(response.body);
-      // ignore: avoid_print
-      print(UserModel.fromJson(jsonDecode(response.body)));
-      return UserModel.fromJson(jsonDecode(response.body));
+
+      final responseBody = jsonDecode(response.body) as Map<String, dynamic>;
+
+      // Save the JWT token
+      if (responseBody.containsKey('jwtToken')) {
+        await _saveJwtToken(responseBody['jwtToken']);
+      }
+
+      return UserModel.fromJson(responseBody);
     } else {
-      // ignore: avoid_print
       print("IN ELSE");
       String errorMessage = 'Failed to login';
       String successMessage;
       try {
-        // Try to decode the response body as JSON
         final responseBody = jsonDecode(response.body) as Map<String, dynamic>?;
 
         if (responseBody != null && responseBody['message'] != null) {
           successMessage = responseBody['message'];
-          // ignore: avoid_print
-          print(successMessage); // Print the error message from the server
+          print(successMessage);
         } else {
           errorMessage = 'Unexpected error occurred';
         }
       } catch (e) {
-        // If JSON decoding fails, provide a more specific error message based on the status code
         if (response.statusCode == 404) {
           errorMessage = 'Login endpoint not found';
         } else if (response.statusCode == 401) {
@@ -96,7 +100,15 @@ class AuthRemoteDataSource {
 
       if (response.statusCode == 200) {
         print("Register successful");
-        return UserModel.fromJson(jsonDecode(response.body));
+
+        final responseBody = jsonDecode(response.body) as Map<String, dynamic>;
+
+        // Save the JWT token
+        if (responseBody.containsKey('jwtToken')) {
+          await _saveJwtToken(responseBody['jwtToken']);
+        }
+
+        return UserModel.fromJson(responseBody);
       } else {
         print("Register failed with status: ${response.statusCode}");
         String errorMessage = 'Failed to register';
@@ -106,7 +118,7 @@ class AuthRemoteDataSource {
               jsonDecode(response.body) as Map<String, dynamic>?;
           if (responseBody != null && responseBody.containsKey('message')) {
             errorMessage = responseBody['message'];
-            print(errorMessage); // Print the error message from the server
+            print(errorMessage);
           } else {
             errorMessage = 'Unexpected error occurred';
           }
