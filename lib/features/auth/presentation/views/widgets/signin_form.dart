@@ -99,7 +99,7 @@ class SignInForm extends StatelessWidget {
         const SizedBox(height: 10),
         TextButton(
           onPressed: () {
-            // Handle forgot password
+            context.go('/forgot-password');
           },
           child: const Text("Forgot Password?",
               style: TextStyle(color: Colors.blue)),

@@ -1,10 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:lms/features/auth/presentation/views/signin_screen.dart';
+import 'package:lms/features/auth/presentation/views/widgets/reset_password_form.dart';
 import 'package:lms/features/home/presentation/views/home_view.dart';
 import 'package:lms/features/license_renewal/presentation/views/license_renewal.dart';
 import 'package:lms/features/payment/presentation/views/payment_view.dart';
 import 'package:lms/features/auth/presentation/views/register_screen.dart';
+import 'package:lms/features/auth/presentation/views/forgot_password_page.dart';
 
 abstract class AppRouter {
   static const kSignIn = '/';
@@ -12,11 +14,21 @@ abstract class AppRouter {
   static const kPaymentView = '/paymentView';
   static const kLicenseRenewalView = '/licenseRenewalView';
   static const kRegister = '/register';
+  static const kForgot = '/forgot-password';
+  static const kReset = '/reset_password';
 
   static final router = GoRouter(
     initialLocation: kSignIn,
     errorPageBuilder: (context, state) => MaterialPage(child: Container()),
     routes: [
+      GoRoute(
+        path: kReset,
+        builder: (context, state) => ResetPasswordForm(),
+      ),
+      GoRoute(
+        path: kForgot,
+        builder: (context, state) => ForgotPasswordPage(),
+      ),
       GoRoute(
         path: kRegister,
         builder: (context, state) => const RegisterScreen(),
